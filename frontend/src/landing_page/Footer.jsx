@@ -16,7 +16,7 @@ function Footer() {
               alt="logo-img"
               style={{ width: "12rem", height: "3rem" }}
             />
-            <p>&copy;2010 - 2025, Zerodha Broking Ltd. All rights reserved.</p>
+            <p>&copy;2010 - 2025, Flash Trade Broking Ltd. All rights reserved.</p>
           </div>
           <div className="col">
             <h3>Company</h3>

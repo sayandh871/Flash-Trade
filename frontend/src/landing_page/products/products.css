@@ -1,0 +1,7 @@
+.universe-img  {
+  min-width: 120px;
+  max-width: 150px;
+  min-height: 60px;
+  max-height: 80px;
+  object-fit: contain;
+}

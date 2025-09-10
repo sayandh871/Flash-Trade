@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "../assets/flashtradelogo.svg";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -9,13 +10,13 @@ function Navbar() {
     >
       <div className="container ">
         {/* Logo on the Left */}
-        <a className="navbar-brand ms-5" href="#">
+        <Link className="navbar-brand ms-5" to="/">
           <img
             src={logo}
             alt="logo"
             style={{ width: "12rem", height: "3rem" }}
           />
-        </a>
+        </Link>
 
         {/* Toggler for smaller screens */}
         <button
@@ -34,29 +35,29 @@ function Navbar() {
         <div className="collapse navbar-collapse  justify-content-end" id="navbarSupportedContent">
           <ul className="navbar-nav mb-2 mb-lg-0">
             <li className="nav-item me-4">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" aria-current="page" to="/signup">
                 SignUp
-              </a>
+              </Link>
             </li>
             <li className="nav-item me-4">
-              <a className="nav-link active" href="#">
+              <Link className="nav-link active" to="/about">
                 About
-              </a>
+              </Link>
             </li>
             <li className="nav-item me-4">
-              <a className="nav-link active" href="#">
+              <Link className="nav-link active" to="/products">
                 Product
-              </a>
+              </Link>
             </li>
             <li className="nav-item me-4">
-              <a className="nav-link active" href="#">
+              <Link className="nav-link active" to="/pricing">
                 Pricing
-              </a>
+              </Link>
             </li>
             <li className="nav-item me-4">
-              <a className="nav-link active" href="#">
+              <Link className="nav-link active" to="/support">
                 Support
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
