@@ -1,0 +1,12 @@
+.links{
+    margin-top: 3rem;
+    text-align: center;
+}
+.links a {
+    text-decoration: none;
+    margin-left: 2rem;
+}
+.subheading{
+    font-size: 1.8rem;
+    color: grey;
+}
