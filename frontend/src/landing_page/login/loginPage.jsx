@@ -1,39 +1,38 @@
+import { Link } from "react-router-dom";
 import signupImage from "../../assets/signupImage.jpg";
 import { useState } from "react";
-import {toast} from "react-toastify"
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
-function SignupPage() {
-  const [formdata, setformdata] = useState({ email: "", username: "", password: "" });
-    
+function LoginPage() {
+  const [formdata, setformdata] = useState({ email: "", password: "" });
+
   const handleChange = (e) => {
     setformdata({ ...formdata, [e.target.name]: e.target.value });
   };
 
   const handlesubmit = async (e) => {
-    console.log("form submitted")
     e.preventDefault();
-    try{
-
-        const res = await fetch("http://localhost:3000/signup",{
+    console.log("form submitted");
+    try {
+        const res = await fetch("http://localhost:3000/login",{
             method:"POST",
-             headers: { "Content-Type": "application/json" },
-             credentials:"include",
-             body:JSON.stringify(formdata)
+            headers: { "Content-Type": "application/json" },
+            credentials:"include",
+            body:JSON.stringify(formdata)
         })
         const data = await res.json();
+        console.log(data)
         if(data.success){
-            toast.success("signup successfull");
-            window.location.href="http://localhost:4000"
-        }else{
-            toast.error(data.message || 'signup failed')
+            toast.success("login successfull");
+            window.location.href = "http://localhost:4000";
         }
-
+        else{
+            toast.error(data.message || "login failed")
+        }
+    } catch (error) {
+      toast.error("server error");
     }
-    catch(err){
-        toast.error("server error");
-    }
-  }
+  };
 
   return (
     <div
@@ -49,8 +48,8 @@ function SignupPage() {
       </div>
       <div>
         <form
-        onSubmit={handlesubmit}
-          className="p-5 mt-5"
+          onSubmit={handlesubmit}
+          className="p-5  d-flex flex-column justify-content-center"
           style={{
             width: "30rem",
             height: "500px",
@@ -62,13 +61,7 @@ function SignupPage() {
             type="email"
             className="form-control mt-5"
             placeholder="Email"
-            onChange={handleChange}
-          />
-          <input
-            name="username"
-            type="text"
-            className="form-control mt-5"
-            placeholder="Username"
+            value={formdata.email}
             onChange={handleChange}
           />
           <input
@@ -76,16 +69,17 @@ function SignupPage() {
             type="password"
             className="form-control mt-5"
             placeholder="Password"
+            value={formdata.password}
             onChange={handleChange}
           />
           <button type="submit" className="btn btn-primary w-100 mt-5">
-            Sign Up
+            LogIn
           </button>
         </form>
         <p className="text-center text-muted mt-3 mb-0">
-          Already have an account?{" "}
-          <Link to="/login" className="text-primary fw-bold">
-            Log in
+          Dont't have an account?{" "}
+          <Link to="/signup" className="text-primary fw-bold">
+            Sign Up
           </Link>
         </p>
       </div>
@@ -93,4 +87,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default LoginPage;

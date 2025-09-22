@@ -1,6 +1,8 @@
 import logo from "../assets/flashtradelogo.svg";
-import React, { useState } from "react";
+import {UserCheck} from "lucide-react"
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
+
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
@@ -91,7 +93,7 @@ const Menu = () => {
         </ul>
         <hr />
         <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">ZU</div>
+          <div className="avatar"><UserCheck /></div>
           <p className="username">USERID</p>
         </div>
       </div>

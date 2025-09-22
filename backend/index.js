@@ -8,12 +8,20 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser")
 
 const PORT = process.env.PORT || 3000;
 const DB_URL = process.env.MONGO_URL;
 
-app.use(cors());
+const {userVerification} = require("./middlewares/AuthMiddleware")
+const {Signup,Login} = require("./Controllers/AuthController")
+
+app.use(cors({
+   origin: "http://localhost:5173",   // ✅ frontend origin
+  credentials: true 
+}));
 app.use(bodyParser.json())
+app.use(cookieParser()); 
 
 mongoose
   .connect(DB_URL)
@@ -45,6 +53,16 @@ app.post("/neworder", async(req,res)=>{
   console.log("order placed");
 })
 
+app.post("/signup",Signup)
+app.post("/login",Login)
+
+app.get("/",userVerification,async (req,res)=>{
+ res.json({ status: true, message: "this is root", user: req.user.username });
+})
+
+app.get("/user",userVerification,async(req,res) => {
+  res.json({status:true, user:req.user})
+})
 
 app.listen(PORT, () => {
   console.log(`server listening on ${PORT}`);
