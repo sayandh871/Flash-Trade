@@ -17,7 +17,7 @@ const {userVerification} = require("./middlewares/AuthMiddleware")
 const {Signup,Login} = require("./Controllers/AuthController")
 
 app.use(cors({
-   origin: "http://localhost:5173",   // ✅ frontend origin
+   origin: ["http://localhost:5173", "http://localhost:4000"],   // ✅ frontend origin
   credentials: true 
 }));
 app.use(bodyParser.json())

@@ -1,39 +1,44 @@
 import signupImage from "../../assets/signupImage.jpg";
 import { useState } from "react";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 
 function SignupPage() {
-  const [formdata, setformdata] = useState({ email: "", username: "", password: "" });
-    
+  const [formdata, setformdata] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
+
   const handleChange = (e) => {
     setformdata({ ...formdata, [e.target.name]: e.target.value });
   };
 
   const handlesubmit = async (e) => {
-    console.log("form submitted")
+    console.log("form submitted");
     e.preventDefault();
-    try{
-
-        const res = await fetch("http://localhost:3000/signup",{
-            method:"POST",
-             headers: { "Content-Type": "application/json" },
-             credentials:"include",
-             body:JSON.stringify(formdata)
-        })
-        const data = await res.json();
-        if(data.success){
-            toast.success("signup successfull");
-            window.location.href="http://localhost:4000"
-        }else{
-            toast.error(data.message || 'signup failed')
-        }
-
+    if (!formdata.email || !formdata.username || !formdata.password) {
+      toast.error("All fields are required idiot");
+      return;
     }
-    catch(err){
-        toast.error("server error");
+    try {
+      const res = await fetch("http://localhost:3000/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(formdata),
+      });
+      const data = await res.json();
+      if (data.success) {
+        toast.success("signup successfull");
+        window.location.href = "http://localhost:4000";
+      } else {
+        toast.error(data.message || "signup failed");
+      }
+    } catch (err) {
+      toast.error("server error");
     }
-  }
+  };
 
   return (
     <div
@@ -49,7 +54,7 @@ function SignupPage() {
       </div>
       <div>
         <form
-        onSubmit={handlesubmit}
+          onSubmit={handlesubmit}
           className="p-5 mt-5"
           style={{
             width: "30rem",

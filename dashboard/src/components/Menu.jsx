@@ -1,12 +1,15 @@
 import logo from "../assets/flashtradelogo.svg";
-import {UserCheck} from "lucide-react"
+import { UserCheck } from "lucide-react";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
 
+import { useAuth } from "./AuthContext";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
   const [isProfileDrodownOpen, setIsProfileDropdownOpen] = useState(false);
+
+  const {user} = useAuth();
 
   function handleMenuClick(index) {
     setSelectedMenu(index);
@@ -93,8 +96,10 @@ const Menu = () => {
         </ul>
         <hr />
         <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar"><UserCheck /></div>
-          <p className="username">USERID</p>
+          <div className="avatar">
+            <UserCheck />
+          </div>
+          <p className="username">{user ? user.username : "Loading..."}</p>
         </div>
       </div>
     </div>

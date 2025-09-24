@@ -1,5 +1,6 @@
 import React from "react";
 import hero from "../../assets/homeHero.png";
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
@@ -12,7 +13,7 @@ function Hero() {
             Online platform to invest in stocks, derivatives, mutual funds,
             ETFs, bonds, and more.
           </p>
-          <button className="btn btn-primary ">Sign up for free</button>
+          <Link to="/signup"><button className="btn btn-primary ">Sign up for free</button></Link>
         </div>
       </div>
     </div>

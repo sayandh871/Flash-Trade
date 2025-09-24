@@ -1,19 +1,20 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { GeneralContextProvider } from "./GeneralContext";
+
 import Apps from "./Apps";
 import Funds from "./Funds";
 import Holdings from "./Holdings";
-
-
 import Orders from "./Orders";
 import Positions from "./Positions";
 import Summary from "./Summary";
 import WatchList from "./WatchList";
+import Menu from "./Menu";
 
 const Dashboard = () => {
   return (
     <div className="dashboard-container">
+       
       <GeneralContextProvider>
         <WatchList />
       </GeneralContextProvider>
@@ -27,6 +28,7 @@ const Dashboard = () => {
           <Route path="/apps" element={<Apps />} />
         </Routes>
       </div>
+      
     </div>
   );
 };
